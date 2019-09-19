@@ -10,8 +10,13 @@ let gatsbyProcess
 app.use("/", express.json(), (req, res) => {
   setTimeout(() => {
     gatsbyProcess.send({
-      type: `GATSBY_CLOUD_IMAGE_SERVICE`,
-      id: req.body.id,
+     type: `GATSBY_CLOUD_IMAGE_SERVICE`,
+      action: {
+        type: "JOB_FINISHED",
+        payload: {
+          id: req.body.id,
+        }
+      },
     })
   }, 10000)
 
